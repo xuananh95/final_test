@@ -2,7 +2,14 @@ import { FaRegCircle, FaRegCheckCircle } from "react-icons/fa";
 import { getTranslation } from "./utils";
 import { AiOutlineArrowDown, AiOutlineArrowUp } from "react-icons/ai";
 
-const TodoList = ({ tasks, handleUncheck, handleCheck, language }) => {
+const TodoList = ({
+    tasks,
+    handleUncheck,
+    handleCheck,
+    language,
+    handleMoveUp,
+    handleMoveDown,
+}) => {
     return (
         <div className="todo-list-container">
             {tasks.map((task, index) => (
@@ -36,14 +43,17 @@ const TodoList = ({ tasks, handleUncheck, handleCheck, language }) => {
                                     (1000 * 3600 * 24)
                             )} ${getTranslation(language, "day")}`}
                         </div>
-                        {/* <div className="btn-grp">
-                            <button style={{ marginRight: 5 }}>
+                        <div className="btn-grp">
+                            <button
+                                style={{ marginRight: 5 }}
+                                onClick={() => handleMoveUp(task.id)}
+                            >
                                 <AiOutlineArrowUp />
                             </button>
-                            <button>
+                            <button onClick={() => handleMoveDown(task.id)}>
                                 <AiOutlineArrowDown />
                             </button>
-                        </div> */}
+                        </div>
                     </div>
                 </div>
             ))}

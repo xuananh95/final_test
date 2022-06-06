@@ -41,6 +41,9 @@ const Home = () => {
         const newLoadedTasks = localStorage.getItem("tasks")
             ? JSON.parse(localStorage.getItem("tasks"))
             : [];
+        if (newLoadedTasks) {
+            newLoadedTasks.sort((a, b) => a.order - b.order);
+        }
         setTasks(newLoadedTasks);
 
         // handle SearchParams
@@ -58,7 +61,7 @@ const Home = () => {
             } else {
                 newTasks = [...newLoadedTasks];
             }
-            setDisplayedTasks(newTasks);
+            setDisplayedTasks(newTasks.sort((a, b) => a.order - b.order));
         }
     }, []);
 
@@ -73,6 +76,7 @@ const Home = () => {
                 order: tasks.length + 1,
             },
         ];
+        newTasks.sort((a, b) => a.order - b.order);
         setTasks(newTasks);
         setDisplayedTasks(newTasks);
         localStorage.setItem("tasks", JSON.stringify(newTasks));
@@ -82,6 +86,7 @@ const Home = () => {
         const newTasks = tasks.map((task) =>
             task.id === id ? { ...task, status: "undone" } : task
         );
+        newTasks.sort((a, b) => a.order - b.order);
         setTasks(newTasks);
         setDisplayedTasks(newTasks);
         localStorage.setItem("tasks", JSON.stringify(newTasks));
@@ -91,6 +96,7 @@ const Home = () => {
         const newTasks = tasks.map((task) =>
             task.id === id ? { ...task, status: "done" } : task
         );
+        newTasks.sort((a, b) => a.order - b.order);
         setTasks(newTasks);
         setDisplayedTasks(newTasks);
         localStorage.setItem("tasks", JSON.stringify(newTasks));
@@ -101,6 +107,7 @@ const Home = () => {
             setDisplayedTasks(tasks);
         } else {
             const newTasks = tasks.filter((task) => task.status === "undone");
+            newTasks.sort((a, b) => a.order - b.order);
             setDisplayedTasks(newTasks);
         }
         setSearchParams({ withDone: currentFlag ? "1" : "0" });
@@ -109,6 +116,50 @@ const Home = () => {
 
     const handleChangeLanguage = (lang) => {
         setLanguage(lang);
+    };
+
+    const handleMoveUp = (id) => {
+        const findTask = tasks.find((task) => task.id === id);
+        if (findTask.order === 1) {
+            return;
+        }
+        const taskBefore = tasks.find(
+            (task) => task.order === findTask.order - 1
+        );
+        const newTasks = tasks.map((task) => {
+            if (task.id === id) {
+                task.order = task.order - 1;
+            } else if (task.id === taskBefore.id) {
+                task.order = task.order + 1;
+            }
+            return task;
+        });
+        newTasks.sort((a, b) => a.order - b.order);
+        setTasks(newTasks);
+        setDisplayedTasks(newTasks);
+        localStorage.setItem("tasks", JSON.stringify(newTasks));
+    };
+
+    const handleMoveDown = (id) => {
+        const findTask = tasks.find((task) => task.id === id);
+        if (findTask.order === tasks.length) {
+            return;
+        }
+        const taskAfter = tasks.find(
+            (task) => task.order === findTask.order + 1
+        );
+        const newTasks = tasks.map((task) => {
+            if (task.id === id) {
+                task.order = task.order + 1;
+            } else if (task.id === taskAfter.id) {
+                task.order = task.order - 1;
+            }
+            return task;
+        });
+        newTasks.sort((a, b) => a.order - b.order);
+        setTasks(newTasks);
+        setDisplayedTasks(newTasks);
+        localStorage.setItem("tasks", JSON.stringify(newTasks));
     };
 
     return (
@@ -131,6 +182,8 @@ const Home = () => {
                     handleUncheck={handleUncheck}
                     handleCheck={handleCheck}
                     language={language}
+                    handleMoveUp={handleMoveUp}
+                    handleMoveDown={handleMoveDown}
                 />
                 <Form handleAddNewTask={handleAddNewTask} language={language} />
             </div>

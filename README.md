@@ -12,4 +12,4 @@
 
 -   [x] 5. Languague switching
 
--   [ ] 6. Reorder the list
+-   [x] 6. Reorder the list
