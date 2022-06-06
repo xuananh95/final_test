@@ -1,70 +1,71 @@
-# Getting Started with Create React App
+# CI ISA Review
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Welcome to the coding challenge. Here is the place that you will know how good you are at tech.
+We're all here to help you. Don't be nervous :)
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+# What is this?
 
-### `npm start`
+This is a white board coding challenge so that we can see how you use your skills to solve
+a specific problem. You'll know how good you have trained with React, and perhaps know how an tech interview
+would look like (we hope so).
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### You can:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+-   search for supporting in google about some library documentations.
+-   ask for hints if you get stuck at some points.
 
-### `npm test`
+### You should:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+-   speak out loud your thinking. We care about how you solve the problem.
+-   suggest your ideas to improve the apps.
+-   aware of time pressure. Cause we have a limited amount of time.
 
-### `npm run build`
+### You don't need to:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+-   write perfect code. You can make some mistakes and it's totally okay.
+-   complete the app. But please try your best to push your limit.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### You have to:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+-   share your screen. We need to control your progress.
 
-### `npm run eject`
+That's all. Good luck!
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+---
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+# Tasks:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Before start working, please take 3 minutes to look into the source code and the UI...
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### 1. Complete the creating task & marking as done behavior:
 
-## Learn More
+When user create a task with form submission, The list should be updated with new created entry.
+When user click the checkbox, item's status should be updated to "done" / "not finished"
+And the total number of undone tasks on top should be updated.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### 2. Show the not finished tasks only
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Create a checkbox on top, saying "Not finished only". When it's checked, we show only the going task only.
+When it's unchecked, we show both done and not finsished tasks.
+Find a way to use URL to fast access the going tasks. For example: `<app-domain.com>?withDone=1` for getting all
+task (done tasks included)
 
-### Code Splitting
+### 3. Store all the tasks permantly and load them in the first place.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+All the task should be storaged inside the LocalStorage. When user first come to the app, we load everything
+from storage to the app.
 
-### Analyzing the Bundle Size
+### 4. Attach a due date to a task
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+A task could have a due date for reminding later. Storage this information and show how many day left until
+the due date on each item.
 
-### Making a Progressive Web App
+### 5. Languague switching
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+Change the UI languege with the language switcher
 
-### Advanced Configuration
+### 6. Reorder the list
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Users might want to organize their task list. Give them ability to reorder the list whatever they want.
